@@ -25,6 +25,7 @@ namespace Login_with_Roles_MVC.Data
         //metodo que validara si los datos ingresados son correctos y existentes
         public Usuario ValidarUsuario(string _correo, string _clave)
         {
+            //El firstorDefault retorna el pprimer elemento que encontro con las coincidencias solicitadas y si no lo encuentra retorna 0 por default
             return ListaUsuario().Where(item => item.Correo == _correo && item.Clave == _clave).FirstOrDefault();
         }
     }

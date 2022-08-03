@@ -23,7 +23,7 @@ namespace Login_with_Roles_MVC.Controllers
             return View();
         }
 
-        //metodo que recibira la accion del post del form y verificara los datos
+        //metodo que recibira la accion del post del form y verificara los datos, por parametro se veriica que se envie un usuario
         [HttpPost]
         public async Task<IActionResult> Index(Usuario _usuario)
         {
@@ -53,7 +53,7 @@ namespace Login_with_Roles_MVC.Controllers
 
                 //creamos la cookie (es asincrono) y con esto confirmamos que esta autorizado (para poder utilizar en [Authorize])
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimIdentity));
-                //si encuentra al usuario y sus datos son correctos, lo manda al index
+                //si encuentra al usuario y sus datos son correctos, lo manda al index del controlador Home
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -67,6 +67,7 @@ namespace Login_with_Roles_MVC.Controllers
         {
             //eliminamos la cookie creada anteriormente al cerrar la sesion (invocar este metodo de salir) (ya no estara autorizado)
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            //nos reedirigimos a l apagina de logeo nuevamente
             return RedirectToAction("Index", "Acceso");
         }
     }

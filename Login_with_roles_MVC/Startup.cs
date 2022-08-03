@@ -63,8 +63,10 @@ namespace Login_with_Roles_MVC
             app.UseAuthentication();
             app.UseAuthorization();
 
+
             app.UseEndpoints(endpoints =>
             {
+                //indicamos en este punto que a la hora de coorer el programa me corra la vista index del controlador acceso
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Acceso}/{action=Index}/{id?}");
